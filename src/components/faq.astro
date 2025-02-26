@@ -1,0 +1,134 @@
+---
+// FAQコンポーネントのプロパティ定義
+interface Props {
+  title?: string;
+  faqs: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+import FAQ from '../components/faq.astro';
+
+const faqItems = [
+  {
+    question: "マイホームはどうやって探せば良いの？",
+    answer: "現在はインターネットの普及により、不動産物件の情報は比較的入手しやすくなりました。一方で、本当に自分の希望条件に合う物件を数ある情報から見つけることが難しい場合もありますし、中には広告される前に売れてしまうものもあります。 一番おすすめしたいのは自分で探すのと並行して信頼できる不動産営業担当に物件探しを依頼することです。様々な情報ネットワークから物件探しをしてくれるだけでなく、気になった物件についてプロの目線からアドバイスも受けられます。"
+  },
+  {
+    question: "何も知らずにお店で相談しても良いもの？",
+    answer: "「不動産」という大きな買い物は、ほとんどの人がはじめての経験。何も知らなくて当然です。担当者はそんな皆様のお役に立つために、ローンのことから地域のことまで、さまざまな知識を揃えています。不動産という大きな買物を全力でお手伝い致しますので、遠慮なく相談してください。"
+  },
+  // 他のFAQ項目...
+];
+
+// デフォルト値とプロパティの取得
+const { 
+  title = "よくある質問", 
+  faqs = [] 
+} = Astro.props;
+---
+
+<section class="faq-section">
+  <div class="container">
+    <h2 class="faq-title">{title}</h2>
+    
+    <div class="faq-list">
+      {faqItems.map((faq, index) => (
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls={`faq-answer-${index}`}>
+            {faq.question}
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer" id={`faq-answer-${index}`} hidden>
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+
+  }
+  
+  .faq-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+  
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .faq-item {
+    border: 1px solid #eee;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+  }
+  
+  .faq-question:hover {
+    background: #f5f5f5;
+  }
+  
+  .faq-answer {
+    padding: 1rem;
+    background: #fff;
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-question[aria-expanded="true"] .icon {
+    transform: rotate(45deg);
+  }
+</style>
+
+<script>
+  // FAQの開閉機能
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqButtons = document.querySelectorAll('.faq-question');
+    
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const answerId = button.getAttribute('aria-controls');
+        const answerElement = document.getElementById(answerId);
+        
+        button.setAttribute('aria-expanded', !expanded);
+        
+        if (expanded) {
+          answerElement.hidden = true;
+        } else {
+          answerElement.hidden = false;
+        }
+      });
+    });
+  });
+</script>
