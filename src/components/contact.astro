@@ -1,0 +1,143 @@
+---
+import contact from '../assets/contact.svg';
+import image from '../assets/image.png';
+---
+<h1>お問い合わせ</h1>
+<div class="contact">
+    <div class="contact__image">
+        <h2>お客様の要望に応じて、最適な物件をご案内いたします。</h2>
+        <img src={image.src} alt="contact">
+    </div>
+	<form action="">
+		<div class="contact__form">
+            <div class="contact__form__item">
+                <label for="name">名前</label>
+                <input type="text" id="name" name="name" placeholder="名前を入力してください">
+            </div>
+            <div class="contact__form__item">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" placeholder="メールアドレスを入力してください">
+            </div>
+            <div class="contact__form__item">
+                <label for="type">希望の種別</label>
+                <select id="type" name="type">
+                    <option value="">希望の種別を選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="contact__form__item">
+                <label for="area">エリア</label>
+                <select id="area" name="area">
+                    <option value="">エリアを選択してください</option>
+                    <option value="岡崎市">岡崎市</option>
+                    <option value="名古屋市">名古屋市</option>
+                    <option value="豊明市">豊明市</option>
+                </select>
+            </div>
+            <div class="contact__form__button">
+                <button type="submit">送信</button>
+            </div>
+	</div>
+</form>
+</div>
+
+<style>
+    h1 {
+        font-size: 24px;
+    }
+
+    .contact {
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 500px 1fr;
+    }
+
+    .contact__image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #f0f0f0;
+        background-image: url({image.src});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;  
+    }
+
+    .contact__image h2 {
+        max-width: 450px;
+        width: 95%;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        object-position: center;
+    }
+	form {
+		width: 100%;
+		margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+	}
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .contact__form__item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .contact__form__button {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .contact__form__button button {
+        width: 100px;
+        height: 40px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .contact {
+            width: 100%;
+            margin: 0 auto;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+    }
+</style>
