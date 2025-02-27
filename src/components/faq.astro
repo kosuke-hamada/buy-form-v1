@@ -52,6 +52,7 @@ const {
 <style>
   .faq-section {
     padding: 2rem 0;
+    margin-top: 100px;
   }
   
   .container {
@@ -107,6 +108,12 @@ const {
   
   .faq-question[aria-expanded="true"] .icon {
     transform: rotate(45deg);
+  }
+
+  @media (max-width: 768px) {
+    .faq-section {
+      margin-top: 50px;
+    }
   }
 </style>
 
