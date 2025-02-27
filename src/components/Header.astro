@@ -1,0 +1,30 @@
+---
+import logo from '../assets/nakajitsu_logo.png';
+---
+
+<header>
+    <div class="header__logo">
+        <img srcset={logo.src} alt="不動産SHOPナカジツ">
+    </div>
+</header>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1000px;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+    .header__logo {
+        width: 120px;
+    }
+
+    .header__logo img{
+        width: 100%;
+    }
+    
+</style>
