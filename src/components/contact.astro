@@ -33,12 +33,73 @@ import image from '../assets/image.webp';
             </div>
             <div class="contact__form__item">
                 <label for="area">エリア</label>
-                <select id="area" name="area">
-                    <option value="">エリアを選択してください</option>
-                    <option value="岡崎市">岡崎市</option>
-                    <option value="名古屋市">名古屋市</option>
-                    <option value="豊明市">豊明市</option>
-                </select>
+                <div class="area-selector">
+                    <button type="button" id="area-button" class="area-button">エリアを選択してください</button>
+                    <div id="area-popup" class="area-popup">
+                        <div class="area-popup-content">
+                            <div class="area-popup-header">
+                                <h3>エリアを選択</h3>
+                                <button type="button" id="area-close" class="area-close">×</button>
+                            </div>
+                            <div class="area-options">
+                                <div class="area-options-grid">
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-chuou" name="area" value="千葉市中央区">
+                                        <label for="area-chiba-chuou">千葉市中央区</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-hanami" name="area" value="千葉市花見川">
+                                        <label for="area-chiba-hanami">千葉市花見川</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-inage" name="area" value="千葉市稲毛区">
+                                        <label for="area-chiba-inage">千葉市稲毛区</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-wakabashi" name="area" value="千葉市若葉区">
+                                        <label for="area-chiba-wakabashi">千葉市若葉区</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-minami" name="area" value="千葉市美浜区">
+                                        <label for="area-chiba-minami">千葉市美浜区</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-ichikawa" name="area" value="市川市">
+                                        <label for="area-chiba-ichikawa">市川市</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-funabashi" name="area" value="船橋市">
+                                        <label for="area-chiba-funabashi">船橋市</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-matsudo" name="area" value="松戸市">
+                                        <label for="area-chiba-matsudo">松戸市</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-narashino" name="area" value="習志野市">
+                                        <label for="area-chiba-narashino">習志野市</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-kashiwa" name="area" value="柏市">
+                                        <label for="area-chiba-kashiwa">柏市</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-nagareyama" name="area" value="流山市">
+                                        <label for="area-chiba-nagareyama">流山市</label>
+                                    </div>
+                                    <div class="area-option">
+                                        <input type="checkbox" id="area-chiba-urayasu" name="area" value="浦安市">
+                                        <label for="area-chiba-urayasu">浦安市</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="area-popup-footer">
+                                <button type="button" id="area-apply" class="area-apply">適用する</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="selected-areas" class="selected-areas"></div>
             </div>
             <div class="contact__form__item">
                 <label for="budget">予算</label>
@@ -187,4 +248,193 @@ import image from '../assets/image.webp';
         flex-direction: column;
         gap: 5px;
     }
+
+    /* エリア選択ポップアップのスタイル */
+    .area-selector {
+        position: relative;
+        width: 100%;
+    }
+    
+    .area-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: left;
+        cursor: pointer;
+    }
+    
+    .area-popup {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
+    
+    .area-popup.active {
+        display: block;
+    }
+    
+    .area-popup-content {
+        padding: 15px;
+    }
+    
+    .area-popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .area-popup-header h3 {
+        margin: 0;
+        font-size: 16px;
+    }
+    
+    .area-close {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    
+    .area-options {
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 15px;
+    }
+    
+    .area-options-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .area-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .area-option input[type="checkbox"] {
+        width: auto;
+        margin-right: 8px;
+    }
+    
+    .area-popup-footer {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .area-apply {
+        padding: 8px 15px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .selected-areas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .area-tag {
+        display: flex;
+        align-items: center;
+        background-color: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+    
+    .area-tag-remove {
+        background: none;
+        border: none;
+        margin-left: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const areaButton = document.getElementById('area-button');
+        const areaPopup = document.getElementById('area-popup');
+        const areaClose = document.getElementById('area-close');
+        const areaApply = document.getElementById('area-apply');
+        const selectedAreas = document.getElementById('selected-areas');
+        const areaCheckboxes = document.querySelectorAll('input[name="area"]');
+        
+        // ポップアップを開く
+        areaButton.addEventListener('click', () => {
+            areaPopup.classList.add('active');
+        });
+        
+        // ポップアップを閉じる
+        areaClose.addEventListener('click', () => {
+            areaPopup.classList.remove('active');
+        });
+        
+        // 外側をクリックしたときにポップアップを閉じる
+        window.addEventListener('click', (e) => {
+            if (!areaPopup.contains(e.target) && e.target !== areaButton) {
+                areaPopup.classList.remove('active');
+            }
+        });
+        
+        // 選択を適用する
+        areaApply.addEventListener('click', () => {
+            updateSelectedAreas();
+            areaPopup.classList.remove('active');
+        });
+        
+        // 選択されたエリアを表示する
+        function updateSelectedAreas() {
+            selectedAreas.innerHTML = '';
+            let selected = [];
+            
+            areaCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selected.push(checkbox.value);
+                    
+                    const tag = document.createElement('div');
+                    tag.className = 'area-tag';
+                    tag.innerHTML = `
+                        ${checkbox.value}
+                        <button type="button" class="area-tag-remove" data-value="${checkbox.value}">×</button>
+                    `;
+                    selectedAreas.appendChild(tag);
+                }
+            });
+            
+            if (selected.length > 0) {
+                areaButton.textContent = `${selected.length}箇所選択中`;
+            } else {
+                areaButton.textContent = 'エリアを選択してください';
+            }
+        }
+        
+        // タグの削除ボタンのイベント委任
+        selectedAreas.addEventListener('click', (e) => {
+            if (e.target.classList.contains('area-tag-remove')) {
+                const value = e.target.getAttribute('data-value');
+                const checkbox = document.querySelector(`input[name="area"][value="${value}"]`);
+                if (checkbox) {
+                    checkbox.checked = false;
+                    updateSelectedAreas();
+                }
+            }
+        });
+    });
+</script>
