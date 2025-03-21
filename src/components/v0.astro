@@ -1,0 +1,201 @@
+<style>
+    /* Reset and base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", sans-serif;
+    }
+    
+    body {
+        padding: 20px;
+        color: #333;
+        line-height: 1.6;
+    }
+    
+    /* Container styles */
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .card {
+        background-color: #fff;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Search bar styles */
+    .search-bar {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .keyword-label {
+        background: linear-gradient(135deg, #FFD34E 0%, #F9A825 100%);
+        color: #333;
+        padding: 12px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        color: #fff;
+    }
+
+    
+    .keyword-label:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .search-input {
+        flex: 1;
+        padding: 12px 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: #F9A825;
+        box-shadow: 0 0 0 3px rgba(249, 168, 37, 0.2);
+    }
+    
+    .search-button {
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .search-button:hover {
+        background-color: #333;
+        color: #fff;
+    }
+    
+    /* Menu styles */
+    .menu-section {
+        margin-top: 20px;
+    }
+    
+    .menu-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .menu-title::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 30px;
+        background-color: #e67e22;
+        margin-right: 10px;
+        border-radius: 4px;
+    }
+    
+    .menu-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px 0;
+    }
+    
+    .menu-item {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        width: calc(50% - 15px);
+    }
+    
+    .menu-item::before {
+        content: "▶";
+        color: #ccc;
+        margin-right: 5px;
+    }
+    
+    .menu-item a {
+        color: #0066cc;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .menu-item a:hover {
+        color: #004499;
+        text-decoration: underline;
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .search-bar {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .keyword-label {
+            align-self: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .search-button {
+            align-self: flex-end;
+            margin-top: 15px;
+        }
+        
+        .menu-item {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Search Section -->
+    <div class="card">
+        <div class="search-bar">
+            <div class="keyword-label">キーワードで絞り込む</div>
+            <input type="text" class="search-input" placeholder="キーワードを入力">
+            <button class="search-button">検索</button>
+        </div>
+    </div>
+    
+    <!-- Menu Section -->
+    <div class="card">
+        <div class="menu-section">
+            <h2 class="menu-title">マンションメニュー</h2>
+            <div class="menu-links">
+                <div class="menu-item">
+                    <a href="#">名古屋市の中古マンションを探す</a>
+                </div>
+                <div class="menu-item">
+                    <a href="#">岡崎市の中古マンションを探す</a>
+                </div>
+                <div class="menu-item">
+                    <a href="#">ペット可のマンションを探す</a>
+                </div>
+                <div class="menu-item">
+                    <a href="#">2000万円以下のマンションを探す</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
